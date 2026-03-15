@@ -89,8 +89,8 @@ npm run build
 
 Build outputs:
 
-- `dist/lib/tiwari-grid.es.js`
-- `dist/lib/tiwari-grid.cjs.js`
+- `dist/lib/tiwari-grid.mjs`
+- `dist/lib/tiwari-grid.cjs`
 - `dist/types/index.d.ts`
 
 ## Notes

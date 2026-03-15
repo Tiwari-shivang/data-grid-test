@@ -11,12 +11,13 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/lib/index.ts'),
       name: 'TiwariGrid',
       formats: ['es', 'cjs'],
-      fileName: (format) =>
-        format === 'es' ? 'tiwari-grid.es.js' : 'tiwari-grid.cjs.js',
+      fileName: (format) => (format === 'es' ? 'tiwari-grid.mjs' : 'tiwari-grid.cjs'),
     },
     rollupOptions: {
       external: [
         'react',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
         'react-dom',
         '@mui/material',
         '@mui/material/styles',
@@ -24,17 +25,6 @@ export default defineConfig({
         '@emotion/react',
         '@emotion/styled',
       ],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          '@mui/material': 'MaterialUI',
-          '@mui/material/styles': 'MaterialUIStyles',
-          '@mui/x-data-grid-premium': 'MuiDataGridPremium',
-          '@emotion/react': 'EmotionReact',
-          '@emotion/styled': 'EmotionStyled',
-        },
-      },
     },
   },
 });

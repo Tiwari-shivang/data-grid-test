@@ -1,16 +1,17 @@
 {
   "name": "tiwari-grid",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Reusable premium MUI Data Grid wrapper with persistence, grouping, pinning, export, search, and undo/redo.",
   "type": "module",
-  "main": "./dist/lib/tiwari-grid.cjs.js",
-  "module": "./dist/lib/tiwari-grid.es.js",
+  "main": "./dist/lib/tiwari-grid.cjs",
+  "module": "./dist/lib/tiwari-grid.mjs",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/lib/tiwari-grid.es.js",
-      "require": "./dist/lib/tiwari-grid.cjs.js"
+      "import": "./dist/lib/tiwari-grid.mjs",
+      "require": "./dist/lib/tiwari-grid.cjs",
+      "default": "./dist/lib/tiwari-grid.mjs"
     }
   },
   "files": [

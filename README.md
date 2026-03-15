@@ -1,73 +1,99 @@
-# React + TypeScript + Vite
+# tiwari-grid
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`tiwari-grid` is a reusable npm dependency that provides `TiwariGrid`, a sleek, production-ready wrapper around MUI Data Grid Premium with state persistence and advanced UX features.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Double-click cell editing
+- Drag-and-drop column reordering
+- Sorting and filtering
+- Row grouping
+- Pin/Unpin columns
+- Hide/Unhide columns
+- Export data
+- Search (quick filter)
+- Undo/Redo
+- Column width resize
+- Automatic localStorage persistence + restore on refresh
+- Sleek responsive design
 
-## React Compiler
+## Install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install tiwari-grid
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Peer dependencies required:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `react`
+- `react-dom`
+- `@mui/material`
+- `@mui/x-data-grid-premium`
+- `@emotion/react`
+- `@emotion/styled`
 
-export default defineConfig([
-  globalIgnores(['dist']),
+## Usage
+
+```tsx
+import { TiwariGrid, type TiwariGridProps } from 'tiwari-grid';
+import type { GridColDef } from '@mui/x-data-grid-premium';
+
+type Row = {
+  id: string;
+  name: string;
+  quantity: number;
+  price: number;
+};
+
+const rows: Row[] = [
+  { id: '1', name: 'Apple', quantity: 10, price: 120 },
+  { id: '2', name: 'Tesla', quantity: 4, price: 180 },
+];
+
+const columns: GridColDef<Row>[] = [
+  { field: 'name', headerName: 'Name', flex: 1, editable: true },
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
+    field: 'quantity',
+    headerName: 'Quantity',
+    type: 'number',
+    width: 130,
+    editable: true,
   },
-])
+  {
+    field: 'price',
+    headerName: 'Price',
+    type: 'number',
+    width: 130,
+    editable: true,
+  },
+];
+
+export default function Example() {
+  return (
+    <TiwariGrid<Row>
+      gridId="portfolio-grid"
+      rows={rows}
+      columns={columns}
+      title="Portfolio"
+      subtitle="Reusable TiwariGrid"
+    />
+  );
+}
 ```
+
+## Build
+
+```bash
+npm run build
+```
+
+Build outputs:
+
+- `dist/lib/tiwari-grid.es.js`
+- `dist/lib/tiwari-grid.cjs.js`
+- `dist/types/index.d.ts`
+
+## Notes
+
+- This package is based on **MUI Data Grid Premium**. Ensure your project complies with MUI X Premium licensing requirements.
+- Grid state is persisted under `tiwari-grid-state:<gridId>` in localStorage.

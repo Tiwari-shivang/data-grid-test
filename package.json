@@ -1,28 +1,53 @@
 {
-  "name": "grid-customizer",
-  "private": true,
-  "version": "0.0.0",
+  "name": "tiwari-grid",
+  "version": "1.0.0",
+  "description": "Reusable premium MUI Data Grid wrapper with persistence, grouping, pinning, export, search, and undo/redo.",
   "type": "module",
+  "main": "./dist/lib/tiwari-grid.cjs.js",
+  "module": "./dist/lib/tiwari-grid.es.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/lib/tiwari-grid.es.js",
+      "require": "./dist/lib/tiwari-grid.cjs.js"
+    }
+  },
+  "files": [
+    "dist/lib",
+    "dist/types",
+    "README.md"
+  ],
+  "sideEffects": false,
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run build:lib",
+    "build:demo": "tsc -b && vite build",
+    "build:lib": "tsc -p tsconfig.lib.json && vite build --config vite.lib.config.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/material": "^7.3.9",
-    "@mui/x-data-grid-premium": "^8.27.5",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "@mui/material": ">=7",
+    "@mui/x-data-grid-premium": ">=8",
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11"
   },
+  "dependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.9",
+    "@mui/x-data-grid-premium": "^8.27.5",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
